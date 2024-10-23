@@ -1,4 +1,4 @@
-module Parser.Tags exposing
+module Dsl.Tags exposing
     ( a
     , h1
     , header
@@ -8,9 +8,9 @@ module Parser.Tags exposing
     , toString
     )
 
-import Parser.Attributes exposing (attrToHtmlAttr)
+import Dsl.Attributes exposing (attrToHtmlAttr)
+import Dsl.Types exposing (Attribute, Node(..), Tag(..))
 import Html exposing (Html)
-import Parser.Types exposing (Attribute, Node(..), Tag(..))
 
 
 header : List (Attribute msg) -> List (Node msg) -> Node msg

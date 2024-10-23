@@ -1,4 +1,4 @@
-module Parser.Types exposing (Attribute(..), Node(..), Tag(..))
+module Dsl.Types exposing (Attribute(..), Node(..), Tag(..))
 
 
 type Node msg

@@ -1,8 +1,8 @@
-module Parser.Helpers exposing (render)
+module Dsl.Helpers exposing (render)
 
-import Parser.Attributes exposing (key, value)
-import Parser.Tags exposing (toString)
-import Parser.Types exposing (Attribute, Node(..), Tag(..))
+import Dsl.Attributes exposing (key, value)
+import Dsl.Tags exposing (toString)
+import Dsl.Types exposing (Attribute, Node(..), Tag(..))
 
 
 render : Node msg -> String

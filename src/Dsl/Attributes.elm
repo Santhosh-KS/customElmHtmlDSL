@@ -1,8 +1,8 @@
-module Parser.Attributes exposing (attrToHtmlAttr, class, href, id, key, value)
+module Dsl.Attributes exposing (attrToHtmlAttr, class, href, id, key, value)
 
+import Dsl.Types exposing (Attribute(..))
 import Html
 import Html.Attributes as Attr
-import Parser.Types exposing (Attribute(..))
 
 
 id : String -> Attribute msg

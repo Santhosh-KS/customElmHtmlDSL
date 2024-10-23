@@ -1,10 +1,10 @@
 module Pages.Home_ exposing (page)
 
+import Dsl.Attributes exposing (class, id)
+import Dsl.Helpers exposing (render)
+import Dsl.Tags exposing (a, h1, header, nodeToHtml, p)
+import Dsl.Types exposing (Attribute(..), Node(..), Tag(..))
 import Html exposing (Html)
-import Parser.Attributes exposing (class, id)
-import Parser.Helpers exposing (render)
-import Parser.Tags exposing (a, h1, header, nodeToHtml, p)
-import Parser.Types exposing (Attribute(..), Node(..), Tag(..))
 import View exposing (View)
 
 
@@ -20,6 +20,10 @@ testNode =
 
 page : View msg
 page =
+    let
+        _ =
+            Debug.log "DEBUG" (render testNode)
+    in
     { title = "Homepage"
     , body =
         [ nodeToHtml testNode
