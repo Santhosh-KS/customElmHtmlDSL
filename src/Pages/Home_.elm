@@ -12,7 +12,7 @@ testNode : Node msg
 testNode =
     header []
         [ h1 [ id "MytestId" ]
-            [ Text "Hello My own Parser!"
+            [ TextElement "Hello My own Parser!"
             ]
         , p [ class "MyPclass" ] []
         ]
@@ -27,7 +27,6 @@ page =
     { title = "Homepage"
     , body =
         [ nodeToHtml testNode
-
-        -- ,    Html.text "Hello, world!"
+        , Html.text "Hello, world!"
         ]
     }

@@ -1,7 +1,7 @@
 module Dsl.Helpers exposing (render)
 
-import Dsl.Attributes exposing (key, value)
-import Dsl.Tags exposing (toString)
+import Dsl.Attributes as A
+import Dsl.Tags as T
 import Dsl.Types exposing (Attribute, Node(..), Tag(..))
 
 
@@ -17,7 +17,7 @@ render node =
                     List.map render children |> String.join ""
 
                 stringTag =
-                    tag |> toString
+                    tag |> T.toString
 
                 endTag =
                     if tag == Img then
@@ -33,7 +33,7 @@ render node =
                 ++ formattedChildern
                 ++ endTag
 
-        Text val ->
+        TextElement val ->
             val
 
 
@@ -43,4 +43,8 @@ render node =
 
 attrKeyValue : Attribute msg -> String
 attrKeyValue attr =
-    " " ++ key attr ++ "=" ++ value attr
+    let
+        v =
+            A.toString attr
+    in
+    " " ++ v.key ++ "=" ++ v.value
