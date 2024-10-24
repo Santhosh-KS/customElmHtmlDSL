@@ -584,7 +584,7 @@ tagToHtml tag attrs children =
             Html.td (List.map attrToHtmlAttr attrs) (List.map nodeToHtml children)
 
         Text ->
-            -- TODO: FIXME fix the text node.
+            -- TODO FIXME: fix the text node.
             -- Html.div [] [ Html.text (List.map attrToHtmlAttr attrs |> String.join " ") ]
             Html.div (List.map attrToHtmlAttr attrs) (List.map nodeToHtml children)
 
@@ -633,3 +633,7 @@ nodeToHtml node =
 
         TextElement val ->
             Html.text val
+
+        -- NOTE: We don't render the DocTags in Elm workflow.
+        DocElement tag attrs children ->
+            Html.text ""

@@ -1,13 +1,63 @@
-module Dsl.Attributes exposing (attrToHtmlAttr, class, href, id, toString)
+module Dsl.Attributes exposing (attrToHtmlAttr, class, href, id, lang, toString)
 
 import Dsl.Types exposing (Attribute(..))
 import Html
 import Html.Attributes as Attr
 
 
-id : String -> Attribute msg
-id val =
-    Id val
+acceptCharset : String -> Attribute msg
+acceptCharset val =
+    AcceptCharset val
+
+
+accept : String -> Attribute msg
+accept val =
+    Accept val
+
+
+accesskey : String -> Attribute msg
+accesskey val =
+    Accesskey val
+
+
+action : String -> Attribute msg
+action val =
+    Action val
+
+
+align : String -> Attribute msg
+align val =
+    Align val
+
+
+alt : String -> Attribute msg
+alt val =
+    Alt val
+
+
+autocomplete : String -> Attribute msg
+autocomplete val =
+    Autocomplete val
+
+
+autofocus : String -> Attribute msg
+autofocus val =
+    Autofocus val
+
+
+autoplay : String -> Attribute msg
+autoplay val =
+    Autoplay val
+
+
+checked : String -> Attribute msg
+checked val =
+    Checked val
+
+
+cite_ : String -> Attribute msg
+cite_ val =
+    Cite_ val
 
 
 class : String -> Attribute msg
@@ -15,9 +65,344 @@ class val =
     Class val
 
 
+colspan : String -> Attribute msg
+colspan val =
+    Colspan val
+
+
+cols : String -> Attribute msg
+cols val =
+    Cols val
+
+
+contenteditable : String -> Attribute msg
+contenteditable val =
+    Contenteditable val
+
+
+contextmenu : String -> Attribute msg
+contextmenu val =
+    Contextmenu val
+
+
+controls : String -> Attribute msg
+controls val =
+    Controls val
+
+
+coords : String -> Attribute msg
+coords val =
+    Coords val
+
+
+datetime : String -> Attribute msg
+datetime val =
+    Datetime val
+
+
+default : String -> Attribute msg
+default val =
+    Default val
+
+
+dir : String -> Attribute msg
+dir val =
+    Dir val
+
+
+disabled : String -> Attribute msg
+disabled val =
+    Disabled val
+
+
+download : String -> Attribute msg
+download val =
+    Download val
+
+
+draggable : String -> Attribute msg
+draggable val =
+    Draggable val
+
+
+dropzone : String -> Attribute msg
+dropzone val =
+    Dropzone val
+
+
+enctype : String -> Attribute msg
+enctype val =
+    Enctype val
+
+
+form_ : String -> Attribute msg
+form_ val =
+    Form_ val
+
+
+for : String -> Attribute msg
+for val =
+    For val
+
+
+headers : String -> Attribute msg
+headers val =
+    Headers val
+
+
+height : String -> Attribute msg
+height val =
+    Height val
+
+
+hidden : String -> Attribute msg
+hidden val =
+    Hidden val
+
+
+hreflang : String -> Attribute msg
+hreflang val =
+    Hreflang val
+
+
 href : String -> Attribute msg
 href val =
     Href val
+
+
+id : String -> Attribute msg
+id val =
+    Id val
+
+
+itemprop : String -> Attribute msg
+itemprop val =
+    Itemprop val
+
+
+kind : String -> Attribute msg
+kind val =
+    Kind val
+
+
+lang : String -> Attribute msg
+lang val =
+    Lang val
+
+
+list : String -> Attribute msg
+list val =
+    List val
+
+
+loop : String -> Attribute msg
+loop val =
+    Loop val
+
+
+manifest : String -> Attribute msg
+manifest val =
+    Manifest val
+
+
+maxlength : String -> Attribute msg
+maxlength val =
+    Maxlength val
+
+
+max : String -> Attribute msg
+max val =
+    Max val
+
+
+media : String -> Attribute msg
+media val =
+    Media val
+
+
+method : String -> Attribute msg
+method val =
+    Method val
+
+
+minlength : String -> Attribute msg
+minlength val =
+    Minlength val
+
+
+min : String -> Attribute msg
+min val =
+    Min val
+
+
+multiple : String -> Attribute msg
+multiple val =
+    Multiple val
+
+
+name : String -> Attribute msg
+name val =
+    Name val
+
+
+novalidate : String -> Attribute msg
+novalidate val =
+    Novalidate val
+
+
+pattern : String -> Attribute msg
+pattern val =
+    Pattern val
+
+
+ping : String -> Attribute msg
+ping val =
+    Ping val
+
+
+placeholder : String -> Attribute msg
+placeholder val =
+    Placeholder val
+
+
+poster : String -> Attribute msg
+poster val =
+    Poster val
+
+
+preload : String -> Attribute msg
+preload val =
+    Preload val
+
+
+pubdate : String -> Attribute msg
+pubdate val =
+    Pubdate val
+
+
+readonly : String -> Attribute msg
+readonly val =
+    Readonly val
+
+
+rel : String -> Attribute msg
+rel val =
+    Rel val
+
+
+required : String -> Attribute msg
+required val =
+    Required val
+
+
+reversed : String -> Attribute msg
+reversed val =
+    Reversed val
+
+
+rowspan : String -> Attribute msg
+rowspan val =
+    Rowspan val
+
+
+rows : String -> Attribute msg
+rows val =
+    Rows val
+
+
+sandbox : String -> Attribute msg
+sandbox val =
+    Sandbox val
+
+
+scope : String -> Attribute msg
+scope val =
+    Scope val
+
+
+selected : String -> Attribute msg
+selected val =
+    Selected val
+
+
+shape : String -> Attribute msg
+shape val =
+    Shape val
+
+
+size : String -> Attribute msg
+size val =
+    Size val
+
+
+spellcheck : String -> Attribute msg
+spellcheck val =
+    Spellcheck val
+
+
+srcdoc : String -> Attribute msg
+srcdoc val =
+    Srcdoc val
+
+
+srclang : String -> Attribute msg
+srclang val =
+    Srclang val
+
+
+src : String -> Attribute msg
+src val =
+    Src val
+
+
+start : String -> Attribute msg
+start val =
+    Start val
+
+
+step : String -> Attribute msg
+step val =
+    Step val
+
+
+style : String -> Attribute msg
+style val =
+    Style val
+
+
+tabindex : String -> Attribute msg
+tabindex val =
+    Tabindex val
+
+
+target : String -> Attribute msg
+target val =
+    Target val
+
+
+title : String -> Attribute msg
+title val =
+    Title_ val
+
+
+type_ : String -> Attribute msg
+type_ val =
+    Type val
+
+
+value : String -> Attribute msg
+value val =
+    Value val
+
+
+width : String -> Attribute msg
+width val =
+    Width val
+
+
+wrap : String -> Attribute msg
+wrap val =
+    Wrap val
 
 
 stringToBool : String -> Bool
@@ -274,7 +659,7 @@ attrToHtmlAttr attr =
         Target vals ->
             Attr.target vals
 
-        Title vals ->
+        Title_ vals ->
             Attr.title vals
 
         Type vals ->
@@ -518,7 +903,7 @@ toString attr =
         Target vals ->
             { key = "target", value = vals }
 
-        Title vals ->
+        Title_ vals ->
             { key = "title", value = vals }
 
         Type vals ->

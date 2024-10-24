@@ -1,9 +1,10 @@
-module Dsl.Types exposing (Attribute(..), Node(..), Tag(..))
+module Dsl.Types exposing (Attribute(..), DocTags(..), Node(..), Tag(..))
 
 
 type Node msg
     = -- Element Tag (List ( String, String )) (List Node)
       Element Tag (List (Attribute msg)) (List (Node msg))
+    | DocElement DocTags (List (Attribute msg)) (List (Node msg))
     | TextElement String
 
 
@@ -84,7 +85,7 @@ type Attribute msg
     | Style String
     | Tabindex String
     | Target String
-    | Title String
+    | Title_ String
     | Type String
     | Value String
     | Width String
@@ -131,8 +132,8 @@ type Tag
     | H4
     | H5
     | H6
-    | Header
     | Hr
+    | Header
     | I
     | Iframe
     | Img
@@ -189,6 +190,14 @@ type Tag
     | Var
     | Video
     | Wbr
+
+
+type DocTags
+    = Html
+    | Head
+    | Body
+    | Meta
+    | Title
 
 
 
