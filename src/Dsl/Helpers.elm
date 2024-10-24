@@ -1,9 +1,10 @@
 module Dsl.Helpers exposing (render)
 
 import Dsl.Attributes as A
+import Dsl.DocAttributes as DA
 import Dsl.DocTags as DT
 import Dsl.Tags as T
-import Dsl.Types exposing (Attribute, DocTags(..), Node(..), Tag(..))
+import Dsl.Types exposing (Attribute, DocAttribute, DocTags(..), Node(..), Tag(..))
 
 
 render : Node msg -> String
@@ -37,7 +38,7 @@ render node =
         DocElement tag attrs children ->
             let
                 formattedAttributes =
-                    List.map attrKeyValue attrs |> String.join " "
+                    List.map docAttrKeyValue attrs |> String.join " "
 
                 formattedChildern =
                     List.map render children |> String.join ""
@@ -46,7 +47,11 @@ render node =
                     tag |> DT.toString
 
                 endTag =
-                    " </" ++ stringTag ++ "> "
+                    if tag == Meta then
+                        ""
+
+                    else
+                        " </" ++ stringTag ++ "> "
             in
             "<"
                 ++ stringTag
@@ -61,6 +66,15 @@ render node =
 
 
 -- ++ endTag
+
+
+docAttrKeyValue : DocAttribute msg -> String
+docAttrKeyValue attr =
+    let
+        v =
+            DA.toString attr
+    in
+    " " ++ v.key ++ "=" ++ v.value
 
 
 attrKeyValue : Attribute msg -> String

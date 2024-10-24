@@ -1,10 +1,10 @@
-module Dsl.Types exposing (Attribute(..), DocTags(..), Node(..), Tag(..))
+module Dsl.Types exposing (Attribute(..), DocAttribute(..), DocTags(..), Node(..), Tag(..))
 
 
 type Node msg
     = -- Element Tag (List ( String, String )) (List Node)
       Element Tag (List (Attribute msg)) (List (Node msg))
-    | DocElement DocTags (List (Attribute msg)) (List (Node msg))
+    | DocElement DocTags (List (DocAttribute msg)) (List (Node msg))
     | TextElement String
 
 
@@ -200,9 +200,8 @@ type DocTags
     | Title
 
 
-
-{- type alias Document msg =
-   { header : String
-   , html : Node msg
-   }
--}
+type DocAttribute msg
+    = Dcharset String
+    | Dname String
+    | Dcontent String
+    | Dlang String

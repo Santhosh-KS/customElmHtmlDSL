@@ -1,7 +1,8 @@
 module Pages.Home_ exposing (page)
 
 import Dsl.Attributes as DA
-import Dsl.DocTags exposing (body, head, html, title)
+import Dsl.DocAttributes as DocA
+import Dsl.DocTags exposing (body, head, html, meta, title)
 import Dsl.Helpers exposing (render)
 import Dsl.Tags exposing (a, h1, header, nodeToHtml, p)
 import Dsl.Types exposing (Attribute(..), Node(..), Tag(..))
@@ -22,8 +23,17 @@ testNode =
 
 docNode : Node msg
 docNode =
-    html [ DA.lang "en" ]
-        [ head [] []
+    html [ DocA.lang "en" ]
+        [ head []
+            [ meta [ DocA.charset "UTF-8" ] []
+            , meta
+                [ DocA.name "vieport"
+                , DocA.content "width=device-width, initial-scale=1.0"
+                ]
+                []
+            , title [] [ TextElement "Document" ]
+            ]
+        , body [] []
         ]
 
 
@@ -38,7 +48,9 @@ page =
     in
     { title = "Homepage"
     , body =
-        [ nodeToHtml testNode
+        [ nodeToHtml docNode
+
+        -- nodeToHtml testNode
         , Html.text "Hello, world!"
         ]
     }
