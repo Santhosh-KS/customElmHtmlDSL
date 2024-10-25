@@ -1,4 +1,4 @@
-module Dsl.DocAttributes exposing (charset, content, lang, name, toString)
+module Dsl.DocAttributes exposing (charset, content, http_equiv, lang, name, toString, type_)
 
 import Dsl.Types exposing (..)
 
@@ -17,6 +17,41 @@ toString attr =
 
         Dlang val ->
             { key = "lang", value = val }
+
+        Ddir val ->
+            { key = "dir", value = val }
+
+        Dxmlnsv val ->
+            { key = "xmlsv", value = val }
+
+        Dxmlnso val ->
+            { key = "xmlnso", value = val }
+
+        Dhttp_equiv val ->
+            { key = "http-equiv", value = val }
+
+        Dtype val ->
+            { key = "type", value = val }
+
+
+http_equiv : String -> DocAttribute msg
+http_equiv val =
+    Dhttp_equiv val
+
+
+xmlnso : String -> DocAttribute msg
+xmlnso val =
+    Dxmlnso val
+
+
+xmlnsv : String -> DocAttribute msg
+xmlnsv val =
+    Dxmlnsv val
+
+
+dir : String -> DocAttribute msg
+dir val =
+    Ddir val
 
 
 charset : String -> DocAttribute msg
@@ -37,3 +72,8 @@ content val =
 lang : String -> DocAttribute msg
 lang val =
     Dcontent val
+
+
+type_ : String -> DocAttribute msg
+type_ val =
+    Dtype val

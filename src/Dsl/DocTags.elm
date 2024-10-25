@@ -1,4 +1,4 @@
-module Dsl.DocTags exposing (body, head, html, meta, title, toString)
+module Dsl.DocTags exposing (body, head, html, meta, style, title, toString)
 
 import Dsl.Types exposing (DocAttribute, DocTags(..), Node(..), Tag(..))
 
@@ -17,6 +17,9 @@ toString t =
 
         Meta ->
             "meta"
+
+        Style_ ->
+            "style"
 
         Title ->
             "title"
@@ -45,3 +48,8 @@ meta attrs childern =
 html : List (DocAttribute msg) -> List (Node msg) -> Node msg
 html attrs childern =
     DocElement Html attrs childern
+
+
+style : List (DocAttribute msg) -> List (Node msg) -> Node msg
+style attrs childern =
+    DocElement Style_ attrs childern

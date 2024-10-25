@@ -6,6 +6,7 @@ type Node msg
       Element Tag (List (Attribute msg)) (List (Node msg))
     | DocElement DocTags (List (DocAttribute msg)) (List (Node msg))
     | TextElement String
+    | MsoComments String
 
 
 type Attribute msg
@@ -198,6 +199,7 @@ type DocTags
     | Body
     | Meta
     | Title
+    | Style_
 
 
 type DocAttribute msg
@@ -205,3 +207,8 @@ type DocAttribute msg
     | Dname String
     | Dcontent String
     | Dlang String
+    | Ddir String
+    | Dxmlnsv String
+    | Dxmlnso String
+    | Dhttp_equiv String
+    | Dtype String

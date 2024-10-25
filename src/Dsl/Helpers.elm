@@ -3,6 +3,7 @@ module Dsl.Helpers exposing (render)
 import Dsl.Attributes as A
 import Dsl.DocAttributes as DA
 import Dsl.DocTags as DT
+import Dsl.Mso exposing (msoSettings)
 import Dsl.Tags as T
 import Dsl.Types exposing (Attribute, DocAttribute, DocTags(..), Node(..), Tag(..))
 
@@ -63,9 +64,8 @@ render node =
         TextElement val ->
             val
 
-
-
--- ++ endTag
+        MsoComments val ->
+            msoSettings val
 
 
 docAttrKeyValue : DocAttribute msg -> String
@@ -74,7 +74,7 @@ docAttrKeyValue attr =
         v =
             DA.toString attr
     in
-    " " ++ v.key ++ "=" ++ v.value
+    " " ++ v.key ++ "=" ++ "\"" ++ v.value ++ "\" "
 
 
 attrKeyValue : Attribute msg -> String
@@ -83,4 +83,4 @@ attrKeyValue attr =
         v =
             A.toString attr
     in
-    " " ++ v.key ++ "=" ++ v.value
+    " " ++ v.key ++ "=" ++ "\"" ++ v.value ++ "\" "

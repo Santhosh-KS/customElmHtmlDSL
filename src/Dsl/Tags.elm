@@ -637,3 +637,7 @@ nodeToHtml node =
         -- NOTE: We don't render the DocTags in Elm workflow.
         DocElement tag attrs children ->
             Html.text ""
+
+        -- NOTE: Do not render MSO email comments in normal HTML
+        MsoComments val ->
+            Html.text ""
