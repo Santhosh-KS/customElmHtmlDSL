@@ -1,4 +1,4 @@
-module Dsl.Mso exposing (msoComment, msoSettings, pixelContent, styleContent)
+module Dsl.Mso exposing (msoComment, msoContent, msoSettings, pixelContent, styleContent)
 
 import Dsl.Types exposing (Node(..))
 
