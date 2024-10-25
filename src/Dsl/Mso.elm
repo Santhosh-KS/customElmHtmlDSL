@@ -1,4 +1,12 @@
-module Dsl.Mso exposing (msoComment, msoContent, msoSettings, pixelContent, styleContent)
+module Dsl.Mso exposing
+    ( msoComment
+    , msoContent
+    , msoSettings
+    , msoTableBorderIssueFixBegin
+    , msoTableBorderIssueFixEnd
+    , pixelContent
+    , styleContent
+    )
 
 import Dsl.Types exposing (Node(..))
 
@@ -12,7 +20,8 @@ pixelContent =
           <o:PixelsPerInch> 96 </o:PixelsPerInch>
       </o:OfficeDocumentSettings>
   </xml> 
-</noscript> """
+</noscript>
+"""
 
 
 styleContent : String
@@ -38,8 +47,35 @@ styleContent =
         mso-table-lspace: 0pt !important;
         mso-table-rspace: 0pt !important;
         mso-line-height-rule: exactly !important;
-    }``
-</style> 
+    }
+</style>
+ 
+"""
+
+
+msoTableBorderIssueFixBegin : String
+msoTableBorderIssueFixBegin =
+    """
+<!--[if mso]>
+    <table width="600" align="center"
+        style="border-spacing:0; border-collapse: collapse; color : #3d3d3d;"
+        role="presentation">
+    <tr>
+    <td>
+<![endif]--> 
+
+"""
+
+
+msoTableBorderIssueFixEnd : String
+msoTableBorderIssueFixEnd =
+    """
+<!--[if mso]>
+    </td>
+    </tr>
+    </table>
+<![endif]-->
+
 """
 
 

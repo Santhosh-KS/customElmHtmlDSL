@@ -71,6 +71,7 @@ type Attribute msg
     | Required String
     | Reversed String
     | Rowspan String
+    | Role String
     | Rows String
     | Sandbox String
     | Scope String
@@ -212,3 +213,6 @@ type DocAttribute msg
     | Dxmlnso String
     | Dhttp_equiv String
     | Dtype String
+    | Dclass String
+    | Dxml_lang String
+    | Dstyle_ String

@@ -1,12 +1,15 @@
 module Dsl.DocAttributes exposing
     ( charset
+    , class
     , content
     , dir
     , http_equiv
     , lang
     , name
+    , style_
     , toString
     , type_
+    , xml_lang
     , xmlnso
     , xmlnsv
     )
@@ -43,6 +46,15 @@ toString attr =
 
         Dtype val ->
             { key = "type", value = val }
+
+        Dclass val ->
+            { key = "class", value = val }
+
+        Dxml_lang val ->
+            { key = "xml:lang", value = val }
+
+        Dstyle_ val ->
+            { key = "style", value = val }
 
 
 http_equiv : String -> DocAttribute msg
@@ -88,3 +100,18 @@ lang val =
 type_ : String -> DocAttribute msg
 type_ val =
     Dtype val
+
+
+class : String -> DocAttribute msg
+class val =
+    Dclass val
+
+
+xml_lang : String -> DocAttribute msg
+xml_lang val =
+    Dxml_lang val
+
+
+style_ : String -> DocAttribute msg
+style_ val =
+    Dstyle_ val

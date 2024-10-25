@@ -3,10 +3,10 @@ module Pages.Home_ exposing (page)
 import Dsl.Attributes as A
 import Dsl.DocAttributes as DA
 import Dsl.DocTags exposing (body, head, html, meta, style, title)
-import Dsl.Helpers exposing (render)
+import Dsl.Helpers exposing (bodyDivStyle, render)
 import Dsl.Mso as MSO
-import Dsl.Tags exposing (h1, header, nodeToHtml, p)
-import Dsl.Types exposing (Attribute(..), Node(..), Tag(..))
+import Dsl.Tags exposing (div, h1, header, nodeToHtml, p, table, td, text, tr)
+import Dsl.Types exposing (Attribute(..), DocAttribute(..), Node(..), Tag(..))
 import Html
 import View exposing (View)
 
@@ -65,8 +65,34 @@ docNode =
             , style [ DA.type_ "text/css" ] []
             , MSO.msoComment MSO.styleContent
             ]
-        , body []
-            [ testNode
+        , body
+            [ DA.class "body"
+            , DA.xml_lang "en"
+            , DA.style_ bodyDivStyle
+            ]
+            [ -- testNode
+              div
+                [ A.style bodyDivStyle
+                ]
+                [ div
+                    [ A.style bodyDivStyle
+                    ]
+                    [ div
+                        [ A.style "font-size:0; color: #fafdfe; mso-line-height-rule:exactly; line-height: 0; display:none; max-width: 0; max-width: 0; opacity: 0; overflow: hidden;mso-hide:all;"
+                        ]
+                        -- TODO: FIXME: make these alien chars using repeat function
+                        [ text "This is our preheader text which can be 35-190 charecters but 85-100 is recommended.\n\t\t\t\t&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;" ]
+                    , table
+                        [ A.align "center"
+                        , A.role "presentation"
+                        , A.style "border-spacing: 0; border-collapse:collapse; color:#3d3d3d; font-family: Arial, Helvetica, sans-serif; font-size: 16px; background-color: #fafdfe; margin:0 auto; padding: 0; width: 100%; max-width: 600px;"
+                        ]
+                        [ tr [ A.style "height:10px;background-color: aqua;" ]
+                            [ td [] [ h1 [] [ text "Hello World!" ] ]
+                            ]
+                        ]
+                    ]
+                ]
             ]
         ]
 
@@ -74,14 +100,15 @@ docNode =
 page : View msg
 page =
     let
+        v =
+            render docNode
+
         _ =
-            Debug.log "" ("<!DOCTYPE html>" ++ render docNode)
+            Debug.log ("<!DOCTYPE html>" ++ v) ""
     in
     { title = "Homepage"
     , body =
         [ nodeToHtml docNode
-
-        -- nodeToHtml testNode
         , Html.text "Hello, world!"
         ]
     }

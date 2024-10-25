@@ -59,6 +59,7 @@ module Dsl.Attributes exposing
     , rel
     , required
     , reversed
+    , role
     , rows
     , rowspan
     , sandbox
@@ -77,6 +78,7 @@ module Dsl.Attributes exposing
     , target
     , title
     , toString
+    , type_
     , value
     , width
     , wrap
@@ -387,6 +389,11 @@ rowspan val =
     Rowspan val
 
 
+role : String -> Attribute msg
+role val =
+    Role val
+
+
 rows : String -> Attribute msg
 rows val =
     Rows val
@@ -693,6 +700,9 @@ attrToHtmlAttr attr =
         Reversed vals ->
             Attr.reversed (stringToBool vals)
 
+        Role vals ->
+            Attr.dir vals
+
         Rowspan vals ->
             Attr.rowspan (stringToInt vals)
 
@@ -936,6 +946,9 @@ toString attr =
 
         Reversed vals ->
             { key = "reversed", value = vals }
+
+        Role vals ->
+            { key = "role", value = vals }
 
         Rowspan vals ->
             { key = "rowspan", value = vals }

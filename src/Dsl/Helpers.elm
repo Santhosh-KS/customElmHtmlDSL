@@ -1,4 +1,4 @@
-module Dsl.Helpers exposing (render)
+module Dsl.Helpers exposing (attrKeyValue, bodyDivStyle, docAttrKeyValue, render)
 
 import Dsl.Attributes as A
 import Dsl.DocAttributes as DA
@@ -27,7 +27,7 @@ render node =
                         ""
 
                     else
-                        " </" ++ stringTag ++ "> "
+                        " </" ++ stringTag ++ ">\n"
             in
             "<"
                 ++ stringTag
@@ -49,10 +49,10 @@ render node =
 
                 endTag =
                     if tag == Meta then
-                        ""
+                        "\n"
 
                     else
-                        " </" ++ stringTag ++ "> "
+                        " </" ++ stringTag ++ ">\n"
             in
             "<"
                 ++ stringTag
@@ -83,4 +83,9 @@ attrKeyValue attr =
         v =
             A.toString attr
     in
-    " " ++ v.key ++ "=" ++ "\"" ++ v.value ++ "\" "
+    " " ++ v.key ++ "=" ++ "\"" ++ v.value ++ "\""
+
+
+bodyDivStyle : String
+bodyDivStyle =
+    "margin:0; padding:0; min-width: 100%; background-color: #dde0e1;"

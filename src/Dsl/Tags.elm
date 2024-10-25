@@ -1,11 +1,16 @@
 module Dsl.Tags exposing
     ( a
+    , div
     , h1
     , header
     , nodeToHtml
     , p
+    , table
     , tagToHtml
+    , td
+    , text
     , toString
+    , tr
     )
 
 import Dsl.Attributes exposing (attrToHtmlAttr)
@@ -28,9 +33,34 @@ p attrs childern =
     Element P attrs childern
 
 
+div : List (Attribute msg) -> List (Node msg) -> Node msg
+div attrs childern =
+    Element Div attrs childern
+
+
 a : List (Attribute msg) -> List (Node msg) -> Node msg
 a attrs childern =
     Element A attrs childern
+
+
+table : List (Attribute msg) -> List (Node msg) -> Node msg
+table attrs childern =
+    Element Table attrs childern
+
+
+tr : List (Attribute msg) -> List (Node msg) -> Node msg
+tr attrs childern =
+    Element Tr attrs childern
+
+
+td : List (Attribute msg) -> List (Node msg) -> Node msg
+td attrs childern =
+    Element Td attrs childern
+
+
+text : String -> Node msg
+text val =
+    TextElement val
 
 
 toString : Tag -> String
@@ -585,7 +615,7 @@ tagToHtml tag attrs children =
 
         Text ->
             -- TODO FIXME: fix the text node.
-            -- Html.div [] [ Html.text (List.map attrToHtmlAttr attrs |> String.join " ") ]
+            -- Html.div [] [ Html.text (List.map attrToHtmlAttr attrs)  ]
             Html.div (List.map attrToHtmlAttr attrs) (List.map nodeToHtml children)
 
         Textarea ->
@@ -634,10 +664,10 @@ nodeToHtml node =
         TextElement val ->
             Html.text val
 
-        -- NOTE: We don't render the DocTags in Elm workflow.
-        DocElement tag attrs children ->
+        -- NOTE: Do not render the DocTags in Elm workflow.
+        DocElement _ _ _ ->
             Html.text ""
 
         -- NOTE: Do not render MSO email comments in normal HTML
-        MsoComments val ->
+        MsoComments _ ->
             Html.text ""
