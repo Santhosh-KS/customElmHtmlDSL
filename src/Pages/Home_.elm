@@ -5,10 +5,9 @@ import Dsl.DocAttributes as DA
 import Dsl.DocTags exposing (body, head, html, meta, style, title)
 import Dsl.Helpers exposing (render)
 import Dsl.Mso as MSO
-import Dsl.Tags exposing (a, h1, header, nodeToHtml, p)
+import Dsl.Tags exposing (h1, header, nodeToHtml, p)
 import Dsl.Types exposing (Attribute(..), Node(..), Tag(..))
-import Html exposing (Html)
-import Html.Attributes exposing (lang)
+import Html
 import View exposing (View)
 
 
@@ -24,7 +23,12 @@ testNode =
 
 docNode : Node msg
 docNode =
-    html [ DA.lang "en" ]
+    html
+        [ DA.lang "en"
+        , DA.dir "dir"
+        , DA.xmlnso "urn:schemas-microsoft-com:office:office"
+        , DA.xmlnsv "urn:schemas-microsoft-com:vml"
+        ]
         [ head []
             [ meta [ DA.charset "UTF-8" ] []
             , meta

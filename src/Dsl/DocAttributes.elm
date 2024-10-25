@@ -1,4 +1,15 @@
-module Dsl.DocAttributes exposing (charset, content, http_equiv, lang, name, toString, type_)
+module Dsl.DocAttributes exposing
+    ( charset
+    , content
+    , dir
+    , http_equiv
+    , lang
+    , name
+    , toString
+    , type_
+    , xmlnso
+    , xmlnsv
+    )
 
 import Dsl.Types exposing (..)
 
@@ -22,10 +33,10 @@ toString attr =
             { key = "dir", value = val }
 
         Dxmlnsv val ->
-            { key = "xmlsv", value = val }
+            { key = "xmlns:v", value = val }
 
         Dxmlnso val ->
-            { key = "xmlnso", value = val }
+            { key = "xmlns:o", value = val }
 
         Dhttp_equiv val ->
             { key = "http-equiv", value = val }
