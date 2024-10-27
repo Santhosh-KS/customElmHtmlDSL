@@ -1,6 +1,7 @@
 module Pages.Home_ exposing (page)
 
-import Dsl.Attributes as A
+import Components.StyleHelpers as CS
+import Dsl.Attributes as A exposing (toString)
 import Dsl.DocAttributes as DA
 import Dsl.DocTags exposing (body, head, html, meta, style, title)
 import Dsl.Helpers exposing (bodyDivStyle, render)
@@ -25,9 +26,9 @@ docNode : Node msg
 docNode =
     html
         [ DA.lang "en"
-        , DA.dir "dir"
-        , DA.xmlnso "urn:schemas-microsoft-com:office:office"
+        , DA.dir "auto"
         , DA.xmlnsv "urn:schemas-microsoft-com:vml"
+        , DA.xmlnso "urn:schemas-microsoft-com:office:office"
         ]
         [ head []
             [ meta [ DA.charset "UTF-8" ] []
@@ -104,7 +105,8 @@ page =
             render docNode
 
         _ =
-            Debug.log ("<!DOCTYPE html>" ++ v) ""
+            -- Debug.log ("<!DOCTYPE html>" ++ v) ""
+            Debug.log (CS.bds1 |> CS.toString) ""
     in
     { title = "Homepage"
     , body =

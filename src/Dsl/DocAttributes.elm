@@ -94,7 +94,7 @@ content val =
 
 lang : String -> DocAttribute msg
 lang val =
-    Dcontent val
+    Dlang val
 
 
 type_ : String -> DocAttribute msg
