@@ -1,4 +1,10 @@
-module Dsl.Helpers exposing (attrKeyValue, bodyDivStyle, docAttrKeyValue, render)
+module Dsl.Helpers exposing
+    ( attrKeyValue
+    , bodyDivStyle
+    , docAttrKeyValue
+    , nonDisplayCharSet
+    , render
+    )
 
 import Dsl.Attributes as A
 import Dsl.DocAttributes as DA
@@ -89,3 +95,19 @@ attrKeyValue attr =
 bodyDivStyle : String
 bodyDivStyle =
     "margin:0; padding:0; min-width: 100%; background-color: #dde0e1;"
+
+
+zeroWidthNonJoiner =
+    "&zwnj"
+
+
+nonBreakingSpace =
+    "&nbsp"
+
+
+combiningGraphimeJoiner =
+    "&#847"
+
+
+nonDisplayCharSet =
+    [ zeroWidthNonJoiner, nonBreakingSpace, combiningGraphimeJoiner ] |> String.join ";"

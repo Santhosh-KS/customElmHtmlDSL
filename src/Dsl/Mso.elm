@@ -5,9 +5,11 @@ module Dsl.Mso exposing
     , msoTableBorderIssueFixBegin
     , msoTableBorderIssueFixEnd
     , pixelContent
+    , preHeaderMSOIssueTrick
     , styleContent
     )
 
+import Components.StyleHelpers as CS
 import Dsl.Types exposing (Node(..))
 
 
@@ -92,3 +94,22 @@ msoContent content =
 msoComment : String -> Node msg
 msoComment val =
     MsoComments val
+
+
+
+-- "font-size:0; color: #fafdfe; mso-line-height-rule:exactly; line-height: 0; display:none; max-width: 0; max-width: 0; opacity: 0; overflow: hidden;mso-hide:all;"
+
+
+preHeaderMSOIssueTrick : String
+preHeaderMSOIssueTrick =
+    CS.new { name = "preHeaderMSOIssueTrick " }
+        |> CS.withFontSize CS.None 0
+        |> CS.withColor "#fafdfe"
+        |> CS.withMsoLineHeightRule "exactly"
+        |> CS.withLineHeight CS.None 0
+        |> CS.withDisplay CS.D_None
+        |> CS.withMaxWidth CS.None 0
+        |> CS.withOpacity 0
+        |> CS.withOverflow CS.Hidden
+        |> CS.withMsoHide "all"
+        |> CS.toString

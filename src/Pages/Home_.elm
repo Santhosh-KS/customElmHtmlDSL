@@ -1,7 +1,8 @@
 module Pages.Home_ exposing (page)
 
-import Components.StyleHelpers as CS
-import Dsl.Attributes as A exposing (toString)
+import Components.ResetPassword as CRP
+import Components.StyleHelpers as CS exposing (withPadding)
+import Dsl.Attributes as A
 import Dsl.DocAttributes as DA
 import Dsl.DocTags exposing (body, head, html, meta, style, title)
 import Dsl.Helpers exposing (bodyDivStyle, render)
@@ -81,20 +82,75 @@ docNode =
                     [ div
                         [ A.style "font-size:0; color: #fafdfe; mso-line-height-rule:exactly; line-height: 0; display:none; max-width: 0; max-width: 0; opacity: 0; overflow: hidden;mso-hide:all;"
                         ]
-                        -- TODO: FIXME: make these alien chars using repeat function
-                        [ text "This is our preheader text which can be 35-190 charecters but 85-100 is recommended.\n\t\t\t\t&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;" ]
+                        [ text ("This is our preheader text which can be 35-190 charecters but 85-100 is recommended." ++ String.repeat 10 Dsl.Helpers.nonDisplayCharSet) ]
                     , table
                         [ A.align "center"
                         , A.role "presentation"
                         , A.style "border-spacing: 0; border-collapse:collapse; color:#3d3d3d; font-family: Arial, Helvetica, sans-serif; font-size: 16px; background-color: #fafdfe; margin:0 auto; padding: 0; width: 100%; max-width: 600px;"
                         ]
                         [ tr [ A.style "height:10px;background-color: aqua;" ]
-                            [ td [] [ h1 [] [ text "Hello World!" ] ]
+                            [ td []
+                                []
                             ]
                         ]
                     ]
                 ]
             ]
+        ]
+
+
+tblCss : String
+tblCss =
+    CS.new { name = "bableCss" }
+        |> CS.withBorderSpacing CS.None 0
+        |> CS.withBorderCollapse CS.Collapse
+        |> CS.withColor "#242424"
+        |> CS.withFontFamily CS.supportedFonts
+        |> CS.withMarginString "0 auto"
+        |> CS.withPadding CS.None 0
+        |> CS.withWidth CS.Percent 100
+        |> CS.withMaxWidth CS.Pixel 600
+        |> CS.toString
+
+
+tdCss : String
+tdCss =
+    CS.new { name = "tdcss" }
+        |> withPadding CS.None 0
+        |> CS.toString
+
+
+tbl : Node msg
+tbl =
+    table
+        [ A.align "center"
+        , A.style tblCss
+        , A.role "presentation"
+        ]
+        [ tr []
+            [ td [ A.style tdCss ]
+                [ tbl1
+                ]
+            ]
+        ]
+
+
+tbl1Css : String
+tbl1Css =
+    CS.new { name = "tbl1Css" }
+        |> CS.withBorderSpacing CS.None 0
+        |> CS.toString
+
+
+tbl1 : Node msg
+tbl1 =
+    table
+        [ A.width "100%"
+        , A.style tbl1Css
+        , A.role "presentation"
+        ]
+        [ tr []
+            [ CRP.topBorder ]
         ]
 
 
@@ -105,8 +161,8 @@ page =
             render docNode
 
         _ =
-            -- Debug.log ("<!DOCTYPE html>" ++ v) ""
-            Debug.log (CS.bds1 |> CS.toString) ""
+            -- Debug.log (CS.bds1 |> CS.toString) ""
+            Debug.log ("<!DOCTYPE html>" ++ v) ""
     in
     { title = "Homepage"
     , body =
