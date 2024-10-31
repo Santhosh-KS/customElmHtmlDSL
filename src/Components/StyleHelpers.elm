@@ -11,6 +11,7 @@ module Components.StyleHelpers exposing
     , supportedFonts
     , toString
     , withBackgroundColor
+    , withBorder
     , withBorderCollapse
     , withBorderSpacing
     , withBoxShadow
@@ -60,6 +61,7 @@ new props =
 type CSS msg
     = BackgroundColor String
     | BoxShadow String
+    | Border Unit Float
     | Color String
     | FontFamily (List String)
     | FontSize Unit Float
@@ -111,6 +113,11 @@ type Orientiation
     | Right
     | Bottom
     | Left
+
+
+withBorder : Unit -> Float -> CssObject msg -> CssObject msg
+withBorder unit val (Settings settings) =
+    Settings { settings | css = List.append settings.css [ Border unit val ] }
 
 
 withTextAlign : TextAlignOptions -> CssObject msg -> CssObject msg
@@ -465,6 +472,9 @@ toKeyValue css =
 
         TextAlign val ->
             { key = "text-align", value = textAlignOptionsToString val }
+
+        Border unit val ->
+            { key = "border", value = unitValString unit val }
 
 
 

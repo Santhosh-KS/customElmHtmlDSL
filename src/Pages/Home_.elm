@@ -88,10 +88,7 @@ docNode =
                         , A.role "presentation"
                         , A.style "border-spacing: 0; border-collapse:collapse; color:#3d3d3d; font-family: Arial, Helvetica, sans-serif; font-size: 16px; background-color: #fafdfe; margin:0 auto; padding: 0; width: 100%; max-width: 600px;"
                         ]
-                        [ tr [ A.style "height:10px;background-color: aqua;" ]
-                            [ td []
-                                []
-                            ]
+                        [ resetPasswordNode
                         ]
                     ]
                 ]
@@ -120,8 +117,8 @@ tdCss =
         |> CS.toString
 
 
-tbl : Node msg
-tbl =
+resetPasswordNode : Node msg
+resetPasswordNode =
     table
         [ A.align "center"
         , A.style tblCss
@@ -150,7 +147,10 @@ tbl1 =
         , A.role "presentation"
         ]
         [ tr []
-            [ CRP.topBorder ]
+            [ CRP.topBorder
+            , CRP.topBannerLogo
+            , CRP.topBannerLockImage
+            ]
         ]
 
 

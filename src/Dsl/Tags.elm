@@ -2,6 +2,7 @@ module Dsl.Tags exposing
     ( a
     , div
     , h1
+    , h2
     , header
     , img
     , nodeToHtml
@@ -32,6 +33,11 @@ img attrs _ =
 h1 : List (Attribute msg) -> List (Node msg) -> Node msg
 h1 attrs childern =
     Element H1 attrs childern
+
+
+h2 : List (Attribute msg) -> List (Node msg) -> Node msg
+h2 attrs childern =
+    Element H2 attrs childern
 
 
 p : List (Attribute msg) -> List (Node msg) -> Node msg
